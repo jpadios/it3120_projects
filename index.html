@@ -7,16 +7,18 @@
     <meta name="description" content="Showcasing mobile applications created by 3rd Year BSIT students using Flutter. Explore featured student-built apps, download APKs, and view screenshots.">
     <meta property="og:title" content="Flutter Student Projects Showcase">
     <meta property="og:description" content="Showcasing mobile applications created by 3rd Year BSIT students using Flutter. Explore featured student-built apps, download APKs, and view screenshots.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    <meta property="og:image" content="https://image.thum.io/get/width/1200/height/630/https://it3120.example.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Student Projects Showcase">
     <!-- Replace the og:url value with your site's absolute URL after you publish -->
     <meta property="og:url" content="REPLACE_WITH_YOUR_SITE_URL">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Flutter Student Projects Showcase">
+    <meta name="twitter:title" content="BSIT Student Projects Showcase">
     <meta name="twitter:description" content="Showcasing mobile applications created by 3rd Year BSIT students using Flutter. Explore featured student-built apps, download APKs, and view screenshots.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    <meta name="twitter:image" content="https://image.thum.io/get/width/1200/height/630/https://it3120.example.com">
     <title>Flutter Student Projects Showcase</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1254,9 +1256,11 @@
             projectsToRender.forEach(project => {
                 const projectCard = document.createElement('div');
                 projectCard.className = 'project-card';
+                projectCard.onclick = () => openScreenshotsModal(project.id);
+                projectCard.style.cursor = 'pointer';
                 
                 projectCard.innerHTML = `
-                    <div class="project-image" onclick="openScreenshotsModal(${project.id})">
+                    <div class="project-image">
                         <img src="${project.image}" alt="${project.title}">
                         ${project.badge ? `<div class="project-badge">${project.badge}</div>` : ''}
                     </div>
