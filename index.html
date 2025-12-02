@@ -1256,8 +1256,6 @@
             projectsToRender.forEach(project => {
                 const projectCard = document.createElement('div');
                 projectCard.className = 'project-card';
-                projectCard.onclick = () => openScreenshotsModal(project.id);
-                projectCard.style.cursor = 'pointer';
                 
                 projectCard.innerHTML = `
                     <div class="project-image">
@@ -1300,6 +1298,16 @@
                         </div>
                     </div>
                 `;
+                
+                // Add click handler to card body (excluding buttons)
+                projectCard.addEventListener('click', (e) => {
+                    // Don't open screenshots if clicking on buttons or links
+                    if (e.target.closest('.btn') || e.target.closest('a')) {
+                        return;
+                    }
+                    openScreenshotsModal(project.id);
+                });
+                projectCard.style.cursor = 'pointer';
                 
                 projectsContainer.appendChild(projectCard);
             });
