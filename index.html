@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Social link preview meta tags (Open Graph / Twitter) -->
+    <meta name="description" content="Showcasing mobile applications created by 3rd Year BSIT students using Flutter. Explore featured student-built apps, download APKs, and view screenshots.">
+    <meta property="og:title" content="Flutter Student Projects Showcase">
+    <meta property="og:description" content="Showcasing mobile applications created by 3rd Year BSIT students using Flutter. Explore featured student-built apps, download APKs, and view screenshots.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Student Projects Showcase">
+    <!-- Replace the og:url value with your site's absolute URL after you publish -->
+    <meta property="og:url" content="REPLACE_WITH_YOUR_SITE_URL">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flutter Student Projects Showcase">
+    <meta name="twitter:description" content="Showcasing mobile applications created by 3rd Year BSIT students using Flutter. Explore featured student-built apps, download APKs, and view screenshots.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
     <title>Flutter Student Projects Showcase</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -837,6 +851,39 @@
             .tabs-container {
                 justify-content: center;
             }
+            /* Reduce controls spacing on tablet/mobile to avoid large gaps */
+            .controls-section {
+                padding: 0.6rem 0;
+            }
+
+            .controls-container {
+                gap: 0.6rem;
+                padding: 0 6px;
+            }
+
+            .tab-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.9rem;
+            }
+
+            .search-box input {
+                padding: 0.6rem 0.8rem 0.6rem 2.6rem;
+                font-size: 0.92rem;
+            }
+
+            .filter-select {
+                padding: 0.55rem 0.9rem;
+                min-width: 110px;
+                font-size: 0.9rem;
+            }
+
+            .search-box i {
+                left: 0.9rem;
+            }
+
+            .project-image {
+                height: 180px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -863,6 +910,40 @@
             
             .modal-header, .modal-body {
                 padding: 1.5rem;
+            }
+
+            /* Further compress controls for small phones */
+            .controls-section {
+                padding: 0.4rem 0;
+            }
+
+            .controls-container {
+                gap: 0.4rem;
+                padding: 0 6px;
+            }
+
+            .search-filters-container {
+                gap: 0.6rem;
+            }
+
+            .search-box input {
+                padding: 0.5rem 0.6rem 0.5rem 2.4rem;
+                font-size: 0.9rem;
+            }
+
+            .tab-btn {
+                padding: 0.45rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .filter-select {
+                padding: 0.45rem 0.8rem;
+                min-width: 95px;
+                font-size: 0.85rem;
+            }
+
+            .project-image {
+                height: 150px;
             }
         }
     </style>
