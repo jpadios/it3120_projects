@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Student Projects Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pastel-primary: #a5b4fc;
+            --pastel-primary-dark: #8b5cf6;
+            --pastel-secondary: #f0f9ff;
+            --pastel-accent: #86efac;
+            --pastel-pink: #f9a8d4;
+            --pastel-yellow: #fde68a;
+            --pastel-blue: #93c5fd;
+            --text: #374151;
+            --text-light: #6b7280;
+            --card-bg: #ffffff;
+            --gradient: linear-gradient(135deg, #a5b4fc 0%, #93c5fd 100%);
+            --gradient-alt: linear-gradient(135deg, #f9a8d4 0%, #fde68a 100%);
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            --hover-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--pastel-secondary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles with Background Image */
+        header {
+            background-image: linear-gradient(rgba(79, 70, 229, 0.85), rgba(99, 102, 241, 0.9)), 
+                              url('https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-divider {
+            width: 100px;
+            height: 4px;
+            background: white;
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        /* Combined Tabs & Search Section */
+        .controls-section {
+            background-color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(165, 180, 252, 0.2);
+        }
+
+        .controls-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn-primary {
+            background: var(--gradient-alt);
+            color: var(--text);
+            box-shadow: 0 4px 6px rgba(249, 168, 212, 0.2);
+        }
+
+        .tab-btn-secondary {
+            background-color: white;
+            color: var(--text);
+            border: 2px solid var(--pastel-primary);
+            box-shadow: 0 4px 6px rgba(165, 180, 252, 0.1);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-filters-container {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--pastel-primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .filter-select {
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            background-color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            min-width: 140px;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--pastel-primary);
+            background: white;
+        }
+
+        /* Modal Popup for Tabs */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            max-width: 800px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h3 {
+            margin: 1.5rem 0 0.8rem;
+            color: var(--pastel-primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .modal-body ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 3rem 0 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            color: var(--text);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Project Card */
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            border: 1px solid rgba(165, 180, 252, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--pastel-primary);
+        }
+
+        .project-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-alt);
+            color: var(--text);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-title i {
+            color: var(--pastel-primary-dark);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .project-team {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-team i {
+            color: var(--pastel-primary-dark);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 6px rgba(165, 180, 252, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(165, 180, 252, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--pastel-primary-dark);
+            border: 2px solid var(--pastel-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(165, 180, 252, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-disabled {
+            background-color: #f3f4f6;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+            pointer-events: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--pastel-primary);
+            border-radius: 2px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #cbd5e1;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Screenshots Modal */
+        .screenshots-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .screenshots-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .screenshots-container {
+            position: relative;
+            background: white;
+            border-radius: var(--border-radius);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .screenshots-header {
+            position: sticky;
+            top: 0;
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .screenshots-header h2 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .close-screenshots {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .close-screenshots:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .screenshots-gallery {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            height: 600px;
+            justify-content: center;
+        }
+
+        .screenshots-carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            position: relative;
+            overflow: visible;
+            margin: 0 auto;
+        }
+
+        .screenshot-item {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screenshot-item.active {
+            display: flex;
+        }
+
+        .screenshot-item img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-height: 500px;
+        }
+
+        .screenshot-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(165, 180, 252, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.8rem;
+            z-index: 15;
+            padding: 0;
+        }
+
+        .screenshot-nav:hover {
+            background: rgba(165, 180, 252, 1);
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .screenshot-nav.prev {
+            left: 2rem;
+        }
+
+        .screenshot-nav.next {
+            right: 2rem;
+        }
+
+        .screenshot-counter {
+            margin-top: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .project-image {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-image:hover {
+            opacity: 0.8;
+        }
+
+        .project-image::after {
+            content: '\f03e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 0.8;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--text-light);
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+        }
+
+        .empty-state h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .controls-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .tabs-container {
+                justify-content: center;
+            }
+            
+            .search-filters-container {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 0 4rem;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .search-filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .filter-options {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .filter-select {
+                flex: 1;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+            
+            .tabs-container {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .tab-btn {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+            }
+            
+            .modal-header, .modal-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <h1>Student Projects</h1>
+            <div class="header-divider"></div>
+            <p>Showcasing mobile applications created by 3rd Year BSIT students using Flutter</p>
+        </div>
+    </header>
+
+    <!-- Combined Tabs & Search Section -->
+    <section class="controls-section">
+        <div class="container controls-container">
+            <div class="tabs-container">
+                <button class="tab-btn tab-btn-primary" data-tab="terms">
+                    <i class="fas fa-exclamation-circle"></i> MUST READ: Terms of Use
+                </button>
+                <button class="tab-btn tab-btn-secondary" data-tab="about">
+                    <i class="fas fa-info-circle"></i> About
+                </button>
+            </div>
+            
+            <div class="search-filters-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search projects by title, team, or description...">
+                </div>
+                
+                <div class="filter-options">
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health & Fitness</option>
+                        <option value="productivity">Productivity</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="social">Social</option>
+                    </select>
+                    <select class="filter-select" id="sortBy">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name">Name A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popups for Tabs -->
+    <div class="modal-overlay" id="terms-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-exclamation-circle"></i> Terms of Use</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>By accessing and using the Flutter Student Projects Showcase, you agree to the following terms:</p>
+                <ul>
+                    <li>All projects showcased are created by students for educational purposes.</li>
+                    <li>The apps may not be fully production-ready and should be used at your own discretion.</li>
+                    <li>Students retain all rights to their intellectual property.</li>
+                    <li>This showcase is intended for inspiration and learning purposes only.</li>
+                    <li>Downloading and using the apps is subject to the individual app's terms and conditions.</li>
+                    <li>We are not responsible for any issues arising from the use of these student projects.</li>
+                </ul>
+                <p>If you have any questions about these terms, please contact us at <strong>jpadios.classes@gmail.com</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="about-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i> About This Showcase</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>This platform showcases mobile applications developed by students as part of the IT 3120 coursework.</p>
+
+                <h3>Showcase Highlights</h3>
+                <ul>
+                    <li>Student-built Flutter applications (mobile + web)</li>
+                    <li>Projects developed in teams during coursework</li>
+                    <li>Complete apps with both web deployment and mobile download options</li>
+                    <li>Innovative solutions across various domains</li>
+                </ul>
+
+                <h3>For Students</h3>
+                <p>This platform serves as a portfolio for student developers and a resource for learning from peers' implementations.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screenshots Modal -->
+    <div class="screenshots-modal" id="screenshotsModal">
+        <div class="screenshots-container">
+            <div class="screenshots-header">
+                <h2 id="screenshotsTitle">App Screenshots</h2>
+                <button class="close-screenshots" onclick="closeScreenshotsModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="screenshots-gallery">
+                <div class="screenshots-carousel" id="screenshotsCarousel">
+                    <!-- Screenshots will be dynamically inserted here -->
+                </div>
+                <div class="screenshot-counter" id="screenshotCounter">Screenshot 1 of 3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="projects-grid" id="projectsContainer">
+                <!-- Project cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Student Projects</h3>
+                    <p>Showcasing the mobile applications created by the 3rd Year BSIT students using Flutter framework.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" class="home-link">Home</a>
+                    <a href="#" class="terms-link">Terms of Use</a>
+                    <a href="#" class="about-link">About</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> jpadios.classes@gmail.com </p>
+                    <p><i class="fas fa-map-marker-alt"></i> Iloilo State University of Fisheries, Science and Technology, Main-Poblacion Campus, Barotac Nuevo, Iloilo </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Project data
+        const projects = [
+            {
+                id: 1,
+                title: "Tuon App",
+                description: "Tuon is the ultimate AI-powered study assistant. Instantly generate notes from any topic, get summaries from your documents, build flashcards, and plan your entire day for academic success.",
+                image: "https://plus.unsplash.com/premium_photo-1661761077411-d50cba031848?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-NT",
+                category: "education",
+                date: "2025-12-02",
+                website: null,
+                download: "https://it3120apps.s3.us-east-1.amazonaws.com/tuon_app.apk",
+                badge: "Featured",
+                icon: "fas fa-book",
+                screenshots: [
+                    "tuon_app/tuon_main.jpg",
+                    "tuon_app/ss2.jpg",
+                    "tuon_app/ss3.jpg",
+                    "tuon_app/ss4.jpg"
+                ]
+            },
+            {
+                id: 2,
+                title: "MineCrops",
+                description: "Are you a farmer looking to grow better? Welcome to MineCrops, your comprehensive digital companion for successful agricultural practices. Whether you're a seasoned professional or just starting out, MineCrops provides the expert insights and recommendations you need to optimize your yield.",
+                image: "https://plus.unsplash.com/premium_photo-1661962692059-55d5a4319814?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-WM",
+                category: "education",
+                date: "2025-12-02",
+                website: "https://minecrops.netlify.app",
+                download: "https://it3120apps.s3.us-east-1.amazonaws.com/minecrops.apk",
+                badge: "Featured",
+                icon: "fas fa-leaf",
+                screenshots: [
+                    "minecrops/minecrops_app.jpg",
+                    "minecrops/ss2.jpg",
+                    "minecrops/ss3.jpg"
+                ]
+            },
+            {
+                id: 3,
+                title: "Mental Wellness App",
+                description: "A daily self-care app featuring mindfulness tips, quick breathing exercises, and tools for tracking mood and habits in a calming purple interface.",
+                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=799&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-AI",
+                category: "health",
+                date: "2025-12-02",
+                website: "https://mentalhealthtipsapp.netlify.app/",
+                download: null,
+                badge: "Featured",
+                icon: "fas fa-brain",
+                screenshots: [
+                    "wellness_app/wellness_app.jpg",
+                    "wellness_app/ss2.jpg",
+                    "wellness_app/ss3.jpg"
+                ]
+            },
+            {
+                id: 4,
+                title: "ISUFST Campus Lost & Found",
+                description: "A utility app for the ISUFST university community designed to help students and staff report, search for, and recover lost personal items.",
+                image: "https://images.unsplash.com/photo-1626010448982-0fec79ed1979?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-NT",
+                category: "education",
+                date: "2025-12-02",
+                website: "https://campuslost-found.netlify.app",
+                download: "https://it3120apps.s3.us-east-1.amazonaws.com/campus_lost_and_found_app.apk",
+                badge: null,
+                icon: "fas fa-magnifying-glass",
+                screenshots: [
+                    "campus_lost_and_found/campus_lost_found_app.jpg",
+                    "campus_lost_and_found/ss2.jpg",
+                    "campus_lost_and_found/ss3.jpg",
+                    "campus_lost_and_found/ss4.jpg"
+                ]
+            },
+                        {
+                id: 5,
+                title: "Recipe Nook",
+                description: "A culinary app that allows users to browse and filter through public recipes like brownies and tuna salad sandwiches. It also features a My Recipes section where users can create and save their own personal recipes.",
+                image: "https://plus.unsplash.com/premium_photo-1670895802114-dc3bc13b5963?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-WM",
+                category: "health",
+                date: "2025-12-02",
+                website: "https://shimmering-kitten-525a63.netlify.app",
+                download: "https://it3120apps.s3.us-east-1.amazonaws.com/recipe_nook.apk",
+                badge: null,
+                icon: "fas fa-utensils",
+                screenshots: [
+                    "recipe_nook_app/recipe_nook_app.png",
+                    "recipe_nook_app/ss2.jpg",
+                    "recipe_nook_app/ss3.jpg"
+                ]
+            },
+            {
+                id: 6,
+                title: "Class Map Scheduler",
+                description: "A student scheduling tool that organizes daily timetables. It features a navigation aid where tapping the blue schedule entry opens a building map to guide the user to the designated room.",
+                image: "https://plus.unsplash.com/premium_photo-1706544427087-9f8747c5c675?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-AI",
+                category: "productivity",
+                date: "2025-12-02",
+                website: null,
+                download: "https://it3120apps.s3.us-east-1.amazonaws.com/class_map.apk",
+                badge: null,
+                icon: "fas fa-calendar",
+                screenshots: [
+                    "classmap_app/classmap_app.png",
+                    "classmap_app/ss2.jpg",
+                    "classmap_app/ss3.jpg"
+                ]
+            },
+            {
+                id: 7,
+                title: "Edunotify",
+                description: "The ultimate student planner. Manage your class schedule, track events, and organize your academic life with edunotify.",
+                image: "https://images.unsplash.com/photo-1423784346385-c1d4dac9893a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                team: "3A-WM",
+                category: "education",
+                date: "2025-12-02",
+                website: "https://edunotify.netlify.app",
+                download: null,
+                badge: null,
+                icon: "fas fa-bell",
+                screenshots: [
+                    "edunotify_app/edunotify_main.jpg",
+                    "edunotify_app/ss2.jpg",
+                    "edunotify_app/ss3.jpg"
+                ]
+            }
+        ];
+
+        // DOM elements
+        const projectsContainer = document.getElementById('projectsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const sortBy = document.getElementById('sortBy');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const modalOverlays = document.querySelectorAll('.modal-overlay');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const homeLink = document.querySelector('.home-link');
+        const termsLink = document.querySelector('.terms-link');
+        const aboutLink = document.querySelector('.about-link');
+
+        // Function to render projects
+        function renderProjects(projectsToRender) {
+            projectsContainer.innerHTML = '';
+            
+            if (projectsToRender.length === 0) {
+                projectsContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>No projects found</h3>
+                        <p>Try adjusting your search or filter criteria</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            projectsToRender.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                
+                projectCard.innerHTML = `
+                    <div class="project-image" onclick="openScreenshotsModal(${project.id})">
+                        <img src="${project.image}" alt="${project.title}">
+                        ${project.badge ? `<div class="project-badge">${project.badge}</div>` : ''}
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="${project.icon}"></i>
+                            ${project.title}
+                        </h3>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-meta">
+                            <div class="project-team">
+                                <i class="fas fa-users"></i>
+                                <span>${project.team}</span>
+                            </div>
+                            <div class="project-date">${formatDate(project.date)}</div>
+                        </div>
+                        <div class="project-actions">
+                            ${project.website ? `
+                                <a href="${project.website}" target="_blank" class="btn btn-outline">
+                                    <i class="fas fa-external-link-alt"></i> Website
+                                </a>
+                            ` : `
+                                <a class="btn btn-outline btn-disabled" aria-disabled="true" tabindex="-1">
+                                    <i class="fas fa-external-link-alt"></i> Website
+                                </a>
+                            `}
+
+                            ${project.download ? `
+                                <a href="${project.download}" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-download"></i> Download
+                                </a>
+                            ` : `
+                                <a class="btn btn-primary btn-disabled" aria-disabled="true" tabindex="-1">
+                                    <i class="fas fa-download"></i> Download
+                                </a>
+                            `}
+                        </div>
+                    </div>
+                `;
+                
+                projectsContainer.appendChild(projectCard);
+            });
+        }
+
+        // Format date to readable format
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Filter and sort projects
+        function filterAndSortProjects() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+            const sortValue = sortBy.value;
+            
+            let filteredProjects = projects.filter(project => {
+                const matchesSearch = project.title.toLowerCase().includes(searchTerm) || 
+                                     project.description.toLowerCase().includes(searchTerm) ||
+                                     project.team.toLowerCase().includes(searchTerm);
+                
+                const matchesCategory = category === 'all' || project.category === category;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            // Sort projects
+            if (sortValue === 'newest') {
+                filteredProjects.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortValue === 'oldest') {
+                filteredProjects.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else if (sortValue === 'name') {
+                filteredProjects.sort((a, b) => a.title.localeCompare(b.title));
+            }
+            
+            renderProjects(filteredProjects);
+        }
+
+        // Modal functionality
+        function openModal(modalId) {
+            // Close all modals first
+            modalOverlays.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            
+            // Show the selected modal
+            document.getElementById(modalId).classList.add('active');
+            
+            // Remove active class from all buttons
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Add active class to clicked button if it exists
+            const clickedButton = event ? event.currentTarget : null;
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+
+        function closeAllModals() {
+            modalOverlays.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+        }
+
+        // Screenshots modal functions
+        let currentScreenshotIndex = 0;
+        let currentProject = null;
+
+        function openScreenshotsModal(projectId) {
+            currentProject = projects.find(p => p.id === projectId);
+            if (!currentProject || !currentProject.screenshots) return;
+            
+            const screenshotsModal = document.getElementById('screenshotsModal');
+            const screenshotsTitle = document.getElementById('screenshotsTitle');
+            const screenshotsCarousel = document.getElementById('screenshotsCarousel');
+            
+            screenshotsTitle.textContent = `${currentProject.title} - Screenshots`;
+            screenshotsCarousel.innerHTML = '';
+            currentScreenshotIndex = 0;
+            
+            // Add screenshot items
+            currentProject.screenshots.forEach((screenshot, index) => {
+                const screenshotItem = document.createElement('div');
+                screenshotItem.className = 'screenshot-item' + (index === 0 ? ' active' : '');
+                screenshotItem.innerHTML = `
+                    <img src="${screenshot}" alt="Screenshot ${index + 1}">
+                `;
+                screenshotsCarousel.appendChild(screenshotItem);
+            });
+            
+            // Add navigation buttons
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'screenshot-nav prev';
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.onclick = () => previousScreenshot();
+            screenshotsCarousel.appendChild(prevBtn);
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'screenshot-nav next';
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.onclick = () => nextScreenshot();
+            screenshotsCarousel.appendChild(nextBtn);
+            
+            updateScreenshotCounter();
+            screenshotsModal.classList.add('active');
+        }
+
+        function nextScreenshot() {
+            if (!currentProject) return;
+            currentScreenshotIndex = (currentScreenshotIndex + 1) % currentProject.screenshots.length;
+            updateScreenshotDisplay();
+        }
+
+        function previousScreenshot() {
+            if (!currentProject) return;
+            currentScreenshotIndex = (currentScreenshotIndex - 1 + currentProject.screenshots.length) % currentProject.screenshots.length;
+            updateScreenshotDisplay();
+        }
+
+        function updateScreenshotDisplay() {
+            const items = document.querySelectorAll('.screenshot-item');
+            items.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === currentScreenshotIndex) {
+                    item.classList.add('active');
+                }
+            });
+            updateScreenshotCounter();
+        }
+
+        function updateScreenshotCounter() {
+            const counter = document.getElementById('screenshotCounter');
+            if (currentProject) {
+                counter.textContent = `Screenshot ${currentScreenshotIndex + 1} of ${currentProject.screenshots.length}`;
+            }
+        }
+
+        function closeScreenshotsModal() {
+            const screenshotsModal = document.getElementById('screenshotsModal');
+            screenshotsModal.classList.remove('active');
+            currentProject = null;
+            currentScreenshotIndex = 0;
+        }
+
+        // Keyboard navigation for screenshots
+        document.addEventListener('keydown', function(e) {
+            const screenshotsModal = document.getElementById('screenshotsModal');
+            if (screenshotsModal.classList.contains('active')) {
+                if (e.key === 'ArrowRight') {
+                    nextScreenshot();
+                } else if (e.key === 'ArrowLeft') {
+                    previousScreenshot();
+                }
+            }
+        });
+
+        // Event listener for clicking outside the screenshots modal
+        document.getElementById('screenshotsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeScreenshotsModal();
+            }
+        });
+
+        // Event listeners
+        searchInput.addEventListener('input', filterAndSortProjects);
+        categoryFilter.addEventListener('change', filterAndSortProjects);
+        sortBy.addEventListener('change', filterAndSortProjects);
+
+        // Tab/Modal event listeners
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                openModal(`${tabName}-modal`);
+            });
+        });
+
+        // Close modal buttons
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', closeAllModals);
+        });
+
+        // Close modal when clicking outside
+        modalOverlays.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAllModals();
+                }
+            });
+        });
+
+        // Footer link event listeners
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeAllModals();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        termsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal('terms-modal');
+        });
+
+        aboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal('about-modal');
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAllModals();
+                closeScreenshotsModal();
+            }
+        });
+
+        // Initial render
+        renderProjects(projects);
+    </script>
+</body>
+</html>
